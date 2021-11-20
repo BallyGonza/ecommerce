@@ -1,0 +1,43 @@
+[{
+        "id": 1,
+        "name": "Spiderman",
+        "description": "Funko pop de Spiderman",
+        "imgURL": "./imgs/funko_spiderman.png",
+        "price": "$100"
+    },
+    {
+        "id": 2,
+        "name": "Venom",
+        "description": "Funko pop de Venom",
+        "imgURL": "",
+        "price": "$100"
+    },
+    {
+        "id": 3,
+        "name": "Crash Bandicoot",
+        "description": "Funko pop de Crash Bandicoot",
+        "imgURL": "",
+        "price": "$100"
+    },
+    {
+        "id": 4,
+        "name": "Mufasa",
+        "description": "Funko pop de Mufasa",
+        "imgURL": "",
+        "price": "$100"
+    },
+    {
+        "id": 5,
+        "name": "Scooby-Doo",
+        "description": "Funko pop de Scooby-Doo",
+        "imgURL": "",
+        "price": "$100"
+    },
+    {
+        "id": 6,
+        "name": "Stitch",
+        "description": "Funko pop de Stitch",
+        "imgURL": "",
+        "price": "$100"
+    }
+]
