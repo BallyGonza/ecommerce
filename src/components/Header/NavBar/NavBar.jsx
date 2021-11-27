@@ -1,18 +1,31 @@
 import React from 'react'
-import { NavBar_Item } from './NavBar_Item/NavBar_Item'
+import { Widget } from '../../Widgets/Widget'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-export function NavBar() {
+export function Nav_Bar() {
     return (
-        <nav>
-            <ul>
-                <NavBar_Item title="Categoria" url="#" />
-                <NavBar_Item title="Ofertas" url="#" />
-                <NavBar_Item title="Historial" url="#" />
-                <NavBar_Item title="Supermercado" url="#" />
-                <NavBar_Item title="Moda" url="#" />
-                <NavBar_Item title="Vender" url="#" />
-                <NavBar_Item title="Ayuda" url="#" />
-            </ul>
-        </nav>
+        <Navbar bg="light" expand='lg' variant="light">
+            <Container>
+                <Link to='/Home'>
+                    <Navbar.Brand>
+                        <img
+                            alt=""
+                            src="https://logodownload.org/wp-content/uploads/2019/08/funko-logo-1.png"
+                            width="120"
+                            height="40"
+                            className="d-inline-block align-top"
+                        />{' '}
+                    </Navbar.Brand>
+                </Link>
+                <Nav className="me-auto">
+                    <Link to='/Home'>Home</Link>
+                    <Link to='/Catalogue'>Catalogue</Link>
+                    <Link to='/Help'>Help</Link>
+                </Nav>
+                <Widget className='d-flex' icon={faShoppingCart} />
+            </Container>
+        </Navbar>
     )
 }

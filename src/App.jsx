@@ -1,14 +1,12 @@
 import React from 'react'
-import { Header } from './components/Header/Header'
-import { Main } from './components/Pages/Main/main'
-import { ItemListContainer } from './components/ItemListContainer'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container } from 'react-bootstrap'
+import { AppRouter } from './AppRouter'
 
 export function App() {
     return (
-        <div>
-            <Header />
-            <Main />
-            <ItemListContainer />
-        </div>
+        <Container>
+            <AppRouter />
+        </Container>
     )
 }

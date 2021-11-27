@@ -1,10 +1,10 @@
 import React from 'react'
 import { ItemListContainer } from '../../ItemListContainer'
 
-export function offers() {
+export function Catalogue() {
     return (
-        <div>
+        <>
             <ItemListContainer />
-        </div>
+        </>
     )
 }

@@ -1,13 +1,20 @@
 import React from 'react'
 import { Item } from './Item'
-import products from '../utils/products.json'
+import productsList from '../utils/products.json'
+import { Row, Col, CardGroup } from 'react-bootstrap'
+import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 
 export function ItemList() {
+
+    const [products, setProducts] = useState([])
+    const navigate = useNavigate()
+
 
     const getProducts = () => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(products);
+                resolve(productsList);
             }, 2000);
         });
 
@@ -15,13 +22,22 @@ export function ItemList() {
 
     }
 
-    getProducts().then((products))
+    useEffect(() => {
+        getProducts().then((prod) => setProducts(prod))
+        return () => {
+            setProducts([])
+        }
+    }, [])
+
+    const handlerOnClick = (e) => {
+        navigate(`/Catalogue/${e.target.id}`)
+    }
 
     return (
-        <ul>
+        <Row className='d-flex justify-content-around'>
             {products.map(product =>
-                <Item id={product.id} imgURL={product.imgURL} title={product.name} description={product.description} price={product.price} />
+                <Item key={product.id} id={product.id} imgURL={product.imgURL} title={product.name} description={product.description} price={product.price} handlerOnClick={handlerOnClick} />
             )}
-        </ul>
+        </Row>
     )
 }

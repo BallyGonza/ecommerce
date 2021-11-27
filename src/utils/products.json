@@ -1,43 +1,43 @@
 [{
         "id": 1,
-        "name": "Spiderman",
-        "description": "Funko pop de Spiderman",
-        "imgURL": "./imgs/funko_spiderman.png",
-        "price": "$100"
+        "name": "Funko Pop - Spiderman",
+        "description": "Este muñeco Pop tiene el nº 404 de su colección de Marvel serie animada Spider-Man, su nombre original es Funko Pop Vinyl Peter Parker de la licencia Marvel Animated Spiderman. ",
+        "imgURL": "https://www.funkotienda.com/wp-content/uploads/2017/03/funko-pop-marvel-spiderman-leaping-400x478.jpg",
+        "price": "16,95€"
     },
     {
         "id": 2,
-        "name": "Venom",
-        "description": "Funko pop de Venom",
-        "imgURL": "",
-        "price": "$100"
+        "name": "Funko Pop - Woody con Radiocontrol",
+        "description": "Este muñeco Pop tiene el nº 56 de su colección de Toy Story, su nombre original es Funko Pop Vinyl Woody with RC de la licencia Toy Story. ",
+        "imgURL": "https://www.funkotienda.com/wp-content/uploads/2019/01/figura-funko-pop-toy-story-woody-con-radiocontrol-400x400.jpg",
+        "price": "32,95€"
     },
     {
         "id": 3,
-        "name": "Crash Bandicoot",
-        "description": "Funko pop de Crash Bandicoot",
-        "imgURL": "",
-        "price": "$100"
+        "name": "Funko Pop - Crash Bandicoot Car",
+        "description": "Este muñeco Pop tiene el nº 64 de su colección de Crash Team Racing, su nombre original es Funko Pop Vinyl Crash Bandicoot Car de la licencia Crash Team Racing. ",
+        "imgURL": "https://www.funkotienda.com/wp-content/uploads/2019/04/Funko-Pop-Crash-Team-Racing-Crash-Bandicoot-1-400x400.jpg",
+        "price": "32,95€"
     },
     {
         "id": 4,
-        "name": "Mufasa",
-        "description": "Funko pop de Mufasa",
-        "imgURL": "",
-        "price": "$100"
+        "name": "Funko Pop - Mufasa",
+        "description": "Este muñeco Pop tiene el nº 495 de su colección de El rey león, su nombre original es Funko Pop Vinyl Mufasa de la licencia The Lion King.",
+        "imgURL": "https://www.funkotienda.com/wp-content/uploads/2019/01/figura-funko-pop-el-rey-leon-mufasa-400x400.jpg",
+        "price": "19,95€"
     },
     {
         "id": 5,
-        "name": "Scooby-Doo",
-        "description": "Funko pop de Scooby-Doo",
-        "imgURL": "",
-        "price": "$100"
+        "name": "Funko Pop - Scooby Doo con Sandwich",
+        "description": "Este muñeco Pop tiene el nº 625 de su colección de Scooby Doo, su nombre original es Funko Pop Vinyl Scooby Doo with Sandwich de la licencia Scooby Doo. ",
+        "imgURL": "https://www.funkotienda.com/wp-content/uploads/2019/07/Funko-Pop-Scooby-Doo-with-Sandwich-7-400x400.jpg",
+        "price": "14,95€"
     },
     {
         "id": 6,
-        "name": "Stitch",
-        "description": "Funko pop de Stitch",
-        "imgURL": "",
-        "price": "$100"
+        "name": "Funko Pop - Lilo & Stitch ~ The Red One",
+        "description": "Este muñeco Pop tiene el nº 35 de su colección de Disney, su nombre original es Funko Pop Vinyl Lilo & Stitch The Red One de la licencia Disney. ",
+        "imgURL": "https://www.funkotienda.com/wp-content/uploads/2018/02/funko-pop-disney-stich-the-red-one-400x400.jpg",
+        "price": "40,95€"
     }
 ]
