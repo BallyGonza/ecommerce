@@ -5,6 +5,9 @@ import { Navbar, Container, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export function Nav_Bar() {
+
+
+
     return (
         <Navbar bg="light" expand='lg' variant="light">
             <Container>
@@ -24,7 +27,9 @@ export function Nav_Bar() {
                     <Link to='/Catalogue'>Catalogue</Link>
                     <Link to='/Help'>Help</Link>
                 </Nav>
-                <Widget className='d-flex' icon={faShoppingCart} />
+                <Link to='/Cart'>
+                    <Widget className='d-flex' icon={faShoppingCart} />
+                </Link>
             </Container>
         </Navbar>
     )

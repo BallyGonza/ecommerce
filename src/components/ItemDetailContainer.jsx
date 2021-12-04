@@ -4,18 +4,21 @@ import { Container } from 'react-bootstrap'
 import { ItemDetail } from './ItemDetail'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Loading } from './Loading'
 
 
 export function ItemDetailContainer() {
 
+    const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
     const { id } = useParams();
 
 
     const getProducts = () => {
         return new Promise((resolve, reject) => {
+            resolve(productsList);
             setTimeout(() => {
-                resolve(productsList);
+                setLoading(false)
             }, 2000);
         });
 
@@ -24,16 +27,24 @@ export function ItemDetailContainer() {
     }
 
     useEffect(() => {
-        getProducts().then(prod => setProducts(prod))
+        getProducts().then((prod) => setProducts(prod))
         return () => {
             setProducts([])
         }
     }, [])
 
-
-    return (
-        <Container>
-            <ItemDetail key={products[id - 1].id} id={products[id - 1].id} imgURL={products[id - 1].imgURL} title={products[id - 1].name} description={products[id - 1].description} price={products[id - 1].price} />
-        </Container>
-    )
+    if (loading) {
+        return (
+            <Container>
+                <Loading />
+            </Container>
+        )
+    }
+    else {
+        return (
+            <>
+                <ItemDetail key={products[id].id} id={products[id].id} imgURL={products[id].imgURL} title={products[id].name} description={products[id].description} price={products[id].price} />
+            </>
+        )
+    }
 }
