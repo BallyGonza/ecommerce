@@ -7,10 +7,9 @@ export function Widget(props) {
 
     const { totalItemsCarrito } = useContext(CartContext)
 
-
     return (
         <div>
-            <FontAwesomeIcon icon={props.icon} />{totalItemsCarrito ? totalItemsCarrito : null}
+            <FontAwesomeIcon icon={props.icon} className='' />{totalItemsCarrito ? totalItemsCarrito : null}
         </div>
     )
 }

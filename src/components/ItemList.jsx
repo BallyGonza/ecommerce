@@ -1,7 +1,6 @@
 import React from 'react'
 import { Item } from './Item'
-import productsList from '../utils/products.json'
-import { getFirebase, getFirestore } from './Firebase/firebase'
+import { getFirestore } from './Firebase/firebase'
 import { Row, Container } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
@@ -12,26 +11,6 @@ export function ItemList() {
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
     const navigate = useNavigate()
-
-
-    // const getProducts = () => {
-    //     return new Promise((resolve, reject) => {
-    //         setTimeout(() => {
-    //             resolve(productsList);
-    //             setLoading(false)
-    //         }, 2000);
-    //     });
-
-    //     // TODO: reject
-
-    // }
-
-    // useEffect(() => {
-    //     getProducts().then((prod) => setProducts(prod))
-    //     return () => {
-    //         setProducts([])
-    //     }
-    // }, [])
 
     const handlerOnClick = (e) => {
         navigate(`/Catalogue/${e.target.id}`)

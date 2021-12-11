@@ -1,12 +1,11 @@
 import React from 'react'
-import { Spinner } from 'react-bootstrap'
-
 
 export function Loading() {
     return (
-        <div>
-            {/* <Spinner color="info" /> */}
-            <h2> Cargando...</h2>
+        <div class="d-flex justify-content-center m-5">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
     )
 }

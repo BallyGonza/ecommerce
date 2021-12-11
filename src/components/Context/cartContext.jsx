@@ -1,5 +1,4 @@
 import { useState, createContext } from "react";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 export const CartContext = createContext([])
 
@@ -20,7 +19,6 @@ function CartContextProvider({ children }) {
             setCartList(cartList.concat({ ...item, "cant": count }))
             setTotal(total + item.price * count)
             setTotalItemsCarrito(totalItemsCarrito + count)
-            setCount(1)
         }
     }
 
@@ -38,7 +36,7 @@ function CartContextProvider({ children }) {
     }
 
     return (
-        <CartContext.Provider value={{ cartList, agregarProducto, vaciarCarrito, addProduct, removeProduct, item, total, setCartList, setTotal, totalItemsCarrito, setTotalItemsCarrito, count }}>
+        <CartContext.Provider value={{ cartList, agregarProducto, vaciarCarrito, addProduct, removeProduct, item, total, setCartList, setTotal, totalItemsCarrito, setTotalItemsCarrito, count, setCount }}>
             {children}
         </CartContext.Provider>
     )
