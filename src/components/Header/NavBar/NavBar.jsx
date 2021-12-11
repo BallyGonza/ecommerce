@@ -1,5 +1,5 @@
 import React from 'react'
-import { Widget } from '../../Widgets/Widget'
+import { Widget } from '../../Widgets/CartWidget'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'

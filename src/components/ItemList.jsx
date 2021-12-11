@@ -1,6 +1,7 @@
 import React from 'react'
 import { Item } from './Item'
 import productsList from '../utils/products.json'
+import { getFirebase, getFirestore } from './Firebase/firebase'
 import { Row, Container } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
@@ -13,29 +14,46 @@ export function ItemList() {
     const navigate = useNavigate()
 
 
-    const getProducts = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(productsList);
-                setLoading(false)
-            }, 2000);
-        });
+    // const getProducts = () => {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve(productsList);
+    //             setLoading(false)
+    //         }, 2000);
+    //     });
 
-        // TODO: reject
+    //     // TODO: reject
 
-    }
+    // }
 
-    useEffect(() => {
-        getProducts().then((prod) => setProducts(prod))
-        return () => {
-            setProducts([])
-        }
-    }, [])
+    // useEffect(() => {
+    //     getProducts().then((prod) => setProducts(prod))
+    //     return () => {
+    //         setProducts([])
+    //     }
+    // }, [])
 
     const handlerOnClick = (e) => {
         navigate(`/Catalogue/${e.target.id}`)
     }
 
+    useEffect(() => {
+        setLoading(true)
+        const db = getFirestore()
+        const itemCollection = db.collection("productos")
+        itemCollection.get().then((querySnapshot) => {
+            if (querySnapshot.size === 0) {
+                console.log('No results!')
+            }
+            else {
+                setProducts(querySnapshot.docs.map(doc => doc.data()).sort((a, b) => a.id - b.id))
+            }
+        }).catch((error) => {
+            console.log('Error Searching Items', error)
+        }).finally(() => {
+            setLoading(false)
+        })
+    }, []);
 
     if (loading) {
         return (
