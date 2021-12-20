@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import { Card, Button, CardGroup, Form } from 'react-bootstrap'
 import { CartContext } from './Context/cartContext'
@@ -6,12 +6,15 @@ import { useNavigate } from 'react-router'
 import { useState } from 'react'
 import 'firebase/firestore'
 import firebase from 'firebase/compat'
-import { getFirestore } from 'firebase/firestore'
+// import { getFirestore } from 'firebase/firestore'
+import { getFirestore } from './Firebase/firebase'
+// import firebase from 'firebase'
 
 
 export function Cart() {
-
+    const [form, setForm] = useState({})
     const [idOrder, setIdOrder] = useState('')
+    const [errors, setErrors] = useState([])
 
     const { cartList, vaciarCarrito, item, total, setCartList, setTotal, setTotalItemsCarrito, totalItemsCarrito } = useContext(CartContext)
 
@@ -22,29 +25,68 @@ export function Cart() {
         setTotalItemsCarrito(totalItemsCarrito - item.cant)
     }
 
+
     const navigate = useNavigate()
 
-    // const generarOrden = (e) => {
-    //     e.preventDefault()
+    const generarOrden = (e) => {
 
-    //     const orden = {}
-    //     orden.date = firebase.firestore.Timestamp.fromDate(new Date());
+        setErrors([])
+        validateEmail()
+        const h3 = document.getElementById('errores')
+        h3.innerHTML = ""
 
-    //     orden.buyer = { nombre: 'Fede', email: 'f@gmail.com', tel: '21346546' }
-    //     orden.total = setTotal
+        if (errors.length !== 0) {
+            const h3 = document.getElementById('errores')
+            h3.innerHTML += errors
+        }
+        else {
 
-    //     orden.items = cartList.map(cartItem => {
-    //         const id = cartItem.id
-    //         const nombre = cartItem.id
-    //         const precio = cartItem.id
+            setForm({
+                name: document.getElementById("name").value,
+                lastname: document.getElementById("lastname").value,
+                phone: document.getElementById("phone").value,
+                mail: document.getElementById("mail").value
+            })
 
-    //         return { id, nombre, precio }
-    //     })
+            e.preventDefault()
 
-    //     const db = getFirestore()
-    //     db.collection('orders').add(orden)
-    //         .then(resp => setIdOrder(resp.id))
-    // }
+
+
+            const orden = {}
+            orden.date = firebase.firestore.Timestamp.fromDate(new Date());
+
+            orden.buyer = { nombre: form.name, lastname: form.lastname, mail: form.mail, phone: form.phone }
+            orden.total = total
+
+            orden.items = cartList.map(cartItem => {
+                const id = cartItem.id
+                const nombre = cartItem.title
+                const precio = cartItem.price
+
+                return { id, nombre, precio }
+            })
+
+            const db = getFirestore()
+            db.collection('orders')
+                .add(orden)
+                .then(resp => setIdOrder(resp.id))
+
+        }
+
+    }
+
+    let validateEmail = () => {
+        let email = document.getElementById('mail').value;
+        let reEmail = document.getElementById('mailValidator').value;
+        let error = '';
+
+        if (email !== reEmail) {
+            error = 'Los mails ingresados no coinciden';
+            setErrors(error)
+        }
+    }
+
+
 
     return (cartList.length > 0 ?
         <>
@@ -64,32 +106,33 @@ export function Cart() {
                 </CardGroup>
             )
             }<CardGroup><Card><Card.Title className='p-2 m-2'>Total:</Card.Title></Card>
-                <Card><Card.Title className='d-flex justify-content-end p-2 m-2'>${total}</Card.Title></Card></CardGroup>
+                <Card><Card.Title className='d-flex justify-content-end p-2 m-2'>${total.toFixed(2)}</Card.Title></Card></CardGroup>
             <Button className='mt-3 mb-5 btn-danger' onClick={() => vaciarCarrito()} >Vaciar Carrito</Button>
 
 
-            <Form onSubmit={'generarOrden'}>
-                <Form.Group className="mb-3" controlId="nombre">
+            <Form>
+                <Form.Group className="mb-3" >
                     <Form.Label>Nombre:</Form.Label>
-                    <Form.Control type="text" placeholder="Gonzalo" />
+                    <Form.Control type="text" placeholder="Gonzalo" id='name' />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="apellido">
+                <Form.Group className="mb-3" >
                     <Form.Label>Apellido:</Form.Label>
-                    <Form.Control type="text" placeholder="Bally" />
+                    <Form.Control type="text" placeholder="Bally" id='lastname' />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="telefono">
+                <Form.Group className="mb-3" >
                     <Form.Label>Telefono:</Form.Label>
-                    <Form.Control type="number" placeholder="1160574258" />
+                    <Form.Control type="number" placeholder="1160574258" id='phone' />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="email">
+                <Form.Group className="mb-3" >
                     <Form.Label>Email:</Form.Label>
-                    <Form.Control type="text" placeholder="example@mail.com" />
+                    <Form.Control type="text" placeholder="example@mail.com" id='mail' />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="email2">
+                <Form.Group className="mb-3" >
                     <Form.Label>Repita su Email:</Form.Label>
-                    <Form.Control type="text" placeholder="example@mail.com" />
+                    <Form.Control type="text" placeholder="example@mail.com" id='mailValidator' />
                 </Form.Group>
-                <Button className='mt-3 mb-5 btn-primary'>Enviar Orden</Button>
+                <h3 id='errores'></h3>
+                <Button className='mt-3 mb-5 btn-primary' onClick={generarOrden}>Enviar Orden</Button>
             </Form>
         </>
         :

@@ -33,6 +33,8 @@ function CartContextProvider({ children }) {
 
     const vaciarCarrito = () => {
         setCartList([])
+        setTotalItemsCarrito(0)
+
     }
 
     return (
