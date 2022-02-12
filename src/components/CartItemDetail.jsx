@@ -10,7 +10,7 @@ export function CartItemDetail({ prod }) {
 
     const [quantity, setQuantity] = useState(0)
 
-    // let cantidad = prod.cant
+
 
     useEffect(() => {
         setQuantity(prod.cant)
