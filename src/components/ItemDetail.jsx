@@ -16,7 +16,6 @@ export function ItemDetail(props) {
 
     function onAdd() {
         agregarProducto(props)
-        console.log(cartList)
     }
 
     const navigate = useNavigate()

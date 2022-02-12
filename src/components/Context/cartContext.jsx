@@ -12,18 +12,19 @@ function CartContextProvider({ children }) {
 
 
     const agregarProducto = (item) => {
-        if (cartList.find(itemBuscado => itemBuscado.id == item.id)) {
-            console.log("El producto ya se encuentra en el carrito.")
-        }
-        else {
-            setCartList(cartList.concat({ ...item, "cant": count }))
-            setTotal(total + item.price * count)
-            setTotalItemsCarrito(totalItemsCarrito + count)
-        }
+        // if (cartList.find(itemBuscado => itemBuscado.id == item.id)) {
+        //     console.log("El producto ya se encuentra en el carrito.")
+        // }
+        // else {
+        setCartList(cartList.concat({ ...item, "cant": count }))
+        setTotal(total + item.price * count)
+        setTotalItemsCarrito(totalItemsCarrito + count)
+        // }
     }
 
     function addProduct() {
         setCount(count + 1)
+
     }
 
     function removeProduct() {
@@ -37,8 +38,16 @@ function CartContextProvider({ children }) {
 
     }
 
+    function sumarProd(id) {
+        cartList.find(product => product.id == id).cant += 1
+    }
+
+    function restarProdOrden(id) {
+        cartList.find(product => product.id == id).cant -= 1
+    }
+
     return (
-        <CartContext.Provider value={{ cartList, agregarProducto, vaciarCarrito, addProduct, removeProduct, item, total, setCartList, setTotal, totalItemsCarrito, setTotalItemsCarrito, count, setCount }}>
+        <CartContext.Provider value={{ cartList, agregarProducto, vaciarCarrito, addProduct, removeProduct, item, total, setCartList, setTotal, totalItemsCarrito, setTotalItemsCarrito, count, setCount, restarProdOrden, sumarProd }}>
             {children}
         </CartContext.Provider>
     )
